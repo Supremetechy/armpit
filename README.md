@@ -78,7 +78,7 @@ Every message — regardless of transport — is the same JSON object:
 {
   "id":          "msg_01j9z4kq0000000000000000",
   "from_agent":  "newsletter_agent@news.relay.net",
-  "to_agent":    "grahm@relay.m-net",
+  "to_agent":    "agent@relay.m-net",
   "user_id":     "usr_abc123",
   "type":        "NOTIFICATION",
   "thread_id":   "thread_news_2026_03_27",
@@ -175,9 +175,9 @@ https://<your-agent-domain>/.well-known/armpit-manifest.json
 ```json
 {
   "schema_version": "armpit-manifest-1.0",
-  "agent_id":       "grahm@relay.m-net",
-  "display_name":   "Grahm",
-  "description":    "Omnipresent personal AI assistant.",
+  "agent_id":       "agent@relay.m-net",
+  "display_name":   "Agent",
+  "description":    "Personal AI Assistant",
   "owner": {
     "name":    "M",
     "contact": "mailto:m@example.com"
@@ -185,13 +185,13 @@ https://<your-agent-domain>/.well-known/armpit-manifest.json
   "endpoints": {
     "primary": {
       "transport": "https",
-      "address":   "https://armpit/grahm.example.com",
+      "address":   "https://armpit/aggent.example.com",
       "auth": { "scheme": "bearer", "value_hint": "https://relay.m-net/token" },
       "tls": true
     },
     "tcp": {
       "transport": "tcp",
-      "address":   "grahm.example.com:2525",
+      "address":   "agent.example.com:2525",
       "auth": { "scheme": "bearer", "value_hint": "https://relay.m-net/token" },
       "tls": true
     }
@@ -217,7 +217,7 @@ https://<your-agent-domain>/.well-known/armpit-manifest.json
     }
   },
   "metadata": {
-    "homepage": "https://grahm.example.com",
+    "homepage": "https://agent.example.com",
     "tags": ["assistant", "personal", "voice"]
   }
 }
@@ -296,7 +296,7 @@ curl -X POST https://relay.example.com/armpit/v1/messages \
   -H "Content-Type: application/json" \
   -d '{
     "id":         "client-ref-7f3a9b",
-    "to_agent":   "grahm@relay.m-net",
+    "to_agent":   "agent@relay.m-net",
     "user_id":    "usr_abc123",
     "type":       "NOTIFICATION",
     "payload": {
@@ -319,7 +319,7 @@ Response (`202 Accepted`):
 If `from_agent` is omitted on the HTTP API, the relay fills it from the
 authenticated bearer token. If supplied, it must still match the token subject.
 
-`federated: true` means `grahm@relay.m-net` is on a different relay and the
+`federated: true` means `agent@relay.m-net` is on a different relay and the
 message was forwarded automatically.
 
 ### Step 3: Retry safely
@@ -505,7 +505,7 @@ Alternatively, send a `SUBSCRIBE` message directly to the publisher agent:
 
 ```json
 {
-  "from_agent": "grahm@relay.m-net",
+  "from_agent": "agent@relay.m-net",
   "to_agent":   "newsletter_agent@news.relay.net",
   "user_id":    "usr_abc123",
   "type":       "SUBSCRIBE",
@@ -567,7 +567,7 @@ Relays forward messages to peer relays automatically when `to_agent` is on a
 different domain.
 
 ```
-myagent@relay.example.com  →  relay.example.com  →  relay.m-net  →  grahm@relay.m-net
+myagent@relay.example.com  →  relay.example.com  →  relay.m-net  →  agent@relay.m-net
 ```
 
 From the sender's perspective this is invisible — send to `grahm@relay.m-net`
