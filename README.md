@@ -1,3 +1,6 @@
+<img width="1024" height="1024" alt="image" src="https://github.com/user-attachments/assets/4402af23-2862-45d0-a131-7d068efaf197" />
+
+
 # ARMPIT
 ## Agentic Relay Messaging Protocol Interactive Transport v1.0
 
